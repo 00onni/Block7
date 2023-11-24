@@ -52,7 +52,7 @@
             app:layout_constraintStart_toStartOf="parent"
             />
 
-        <!-- mainpage background character-->
+        <!-- mainpage background costume-->
 
         <!-- gold_bar -->
         <ImageView
@@ -265,16 +265,16 @@
             android:layout_marginRight="10dp"
             />
 
-        <!-- character_tap_icon-->
+        <!-- costume_tap_icon-->
         <ImageView
-            android:id="@+id/character_icon"
+            android:id="@+id/costume_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintWidth_percent="0.06"
             app:layout_constraintHeight_percent="0.12"
             android:scaleType="fitXY"
             android:background="@null"
-            android:src="@drawable/character_icon"
+            android:src="@drawable/contract_icon"
             app:layout_constraintStart_toStartOf="@id/under_bar"
             app:layout_constraintBottom_toBottomOf="@id/under_bar"
             android:layout_marginLeft="10dp"
@@ -282,27 +282,27 @@
 
 
 
-        <!-- character_text-->
+        <!-- costume_text-->
         <TextView
-            android:id="@+id/character_text"
+            android:id="@+id/costume_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/under_bar"
-            app:layout_constraintStart_toEndOf="@id/character_icon"
-            android:text="캐릭터"
+            app:layout_constraintStart_toEndOf="@id/costume_icon"
+            android:text="코스튬"
             android:textSize="15sp"
             android:textColor="@color/white"
             android:fontFamily="@font/nanum4"
             />
 
-        <!-- guideline between character and inventory-->
+        <!-- guideline between costume and i터nventory-->
         <ImageView
-            android:id="@+id/character_guideline"
+            android:id="@+id/costume_guideline"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.06"
             app:layout_constraintWidth_percent="0.04"
-            app:layout_constraintStart_toEndOf="@id/character_text"
+            app:layout_constraintStart_toEndOf="@id/costume_text"
             app:layout_constraintTop_toTopOf="@id/under_bar"
             app:layout_constraintBottom_toBottomOf="@id/under_bar"
             android:src="@drawable/vertical_guideline"
@@ -319,7 +319,7 @@
             android:scaleType="fitXY"
             android:background="@null"
             android:src="@drawable/inventory_icon"
-            app:layout_constraintStart_toStartOf="@id/character_guideline"
+            app:layout_constraintStart_toStartOf="@id/costume_guideline"
             app:layout_constraintBottom_toBottomOf="@id/under_bar"
             android:layout_marginLeft="30dp"
             />
@@ -532,13 +532,13 @@
 
 
         <ImageButton
-            android:id="@+id/character_tap_button"
+            android:id="@+id/costume_tap_button"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.12"
             app:layout_constraintWidth_percent="0.15"
-            app:layout_constraintStart_toStartOf="@id/character_icon"
-            app:layout_constraintEnd_toEndOf="@id/character_text"
+            app:layout_constraintStart_toStartOf="@id/costume_icon"
+            app:layout_constraintEnd_toEndOf="@id/costume_text"
             app:layout_constraintBottom_toBottomOf="@id/under_bar"
             android:background="@null"
             />

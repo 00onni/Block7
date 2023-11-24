@@ -1,16 +1,19 @@
 package com.cookandroid.block7
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -59,43 +62,11 @@ class MainPage : BaseActivity() {
 
         }
 
-        val viewPager: ViewPager2 = findViewById(R.id.viewPager)
-        val bannerAdapter = BannerAdapter()
-        viewPager.adapter = bannerAdapter
-
-        val handler = Handler(Looper.getMainLooper())
-        val run = object : Runnable {
-            override fun run() {
-                var currentPosition = viewPager.currentItem
-                val itemCount = bannerAdapter.itemCount
-                currentPosition = if (currentPosition == itemCount - 1) 0 else currentPosition + 1
-                viewPager.setCurrentItem(currentPosition, true) // true to enable smooth scrolling
-                handler.postDelayed(this, 3000) // 3000 milliseconds delay for auto slide
-            }
-        }
-        handler.postDelayed(run, 3000) // Start auto slide with a delay
-
-// Registering the OnPageChangeCallback to reset the auto slider timer when user interacts with ViewPager
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageScrollStateChanged(state: Int) {
-                super.onPageScrollStateChanged(state)
-                when (state) {
-                    ViewPager2.SCROLL_STATE_IDLE -> handler.postDelayed(run, 3000)
-                    ViewPager2.SCROLL_STATE_DRAGGING -> handler.removeCallbacks(run)
-                    ViewPager2.SCROLL_STATE_SETTLING -> handler.removeCallbacks(run)
-                }
-            }
-
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                // Assuming you have set the adapter to loop, add logic to jump to the start/end accordingly
-            }
-        })
 
 
-        val contract_tap_button:ImageButton = findViewById(R.id.contract_tap_button)
-        contract_tap_button.setOnClickListener {
-            val intent = Intent(this, ContractActivity::class.java)
+        val battle_button : ImageView = findViewById(R.id.battle_icon)
+        battle_button.setOnClickListener{
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
         }
     }

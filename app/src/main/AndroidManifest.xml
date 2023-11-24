@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Developer_project"
         tools:targetApi="31">
         <activity
-            android:name="com.cookandroid.block7.MainActivity"
+            android:name="com.cookandroid.block7.GameActivity"
             android:exported="true"
             android:screenOrientation="landscape">
 
@@ -32,12 +32,7 @@
             />
 
         <activity
-            android:name="com.cookandroid.block7.CharacterActivity"
-            android:screenOrientation="landscape"
-            />
-
-        <activity
-            android:name="com.cookandroid.block7.ContractActivity"
+            android:name="com.cookandroid.block7.MainActivity"
             android:screenOrientation="landscape"
             />
         <activity
