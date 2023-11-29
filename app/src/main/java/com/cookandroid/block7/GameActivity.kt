@@ -86,6 +86,8 @@ class GameActivity : BaseActivity() {
     val sowoon  = Member(name = "sowoon", kor_name = "소운")
     val hyundong = Member(name = "hyundong", kor_name = "현동")
 
+    var date = 1;
+
     val item =  Item()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,9 +115,9 @@ class GameActivity : BaseActivity() {
         blackBackground = findViewById(R.id.black_background)
         dayText = findViewById(R.id.day_text)
 
+        //1일차 시작할때 기본적으로 해야하는 로직들
         item.randomizeItems()
-
-        var date = 0;
+        dayText.setText("${date}일차")
         updateItemVisibility(item)
 
         updateMemberVisibility(dameun, member_dameun)
@@ -123,9 +125,19 @@ class GameActivity : BaseActivity() {
         updateMemberVisibility(sowoon, member_sowoon)
         updateMemberVisibility(hyundong, member_hyundong)
 
+        firstdayfadeout(blackBackground, dayText)
+
         val finishbutton : Button = findViewById(R.id.finish_button)
         finishbutton.setOnClickListener {
+            date++
+            dayText.setText("${date}일차")
             animateScreenTransition(blackBackground, dayText)
+
+            updateItemVisibility(item)
+            updateMemberVisibility(dameun, member_dameun)
+            updateMemberVisibility(eunju, member_eunju)
+            updateMemberVisibility(sowoon, member_sowoon)
+            updateMemberVisibility(hyundong, member_hyundong)
         }
     }
 
@@ -192,6 +204,38 @@ class GameActivity : BaseActivity() {
                         }, 2000) // 2초 동안 대기
                     }
                 })
+            }
+        })
+    }
+
+    fun firstdayfadeout(background: ImageView, dayText: TextView) {
+        // 배경의 페이드 인 애니메이션
+        ObjectAnimator.ofFloat(background, "alpha", 0f, 1f).apply {
+            duration = 0 // n초 동안
+            start()
+        }.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                // 배경 애니메이션이 끝나면 텍스트의 페이드 인 애니메이션 시작
+                ObjectAnimator.ofFloat(dayText, "alpha", 0f, 1f).apply {
+                    duration = 2000 // 3초 동안
+                    start()
+                }.addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        // 텍스트 애니메이션이 끝나면 2초 동안 유지
+                        dayText.postDelayed({
+                            // 텍스트의 페이드 아웃 애니메이션
+                            ObjectAnimator.ofFloat(dayText, "alpha", 1f, 0f).apply {
+                                duration = 2000 // 3초 동안
+                                start()
+                            }
+                            // 배경의 페이드 아웃 애니메이션
+                            ObjectAnimator.ofFloat(background, "alpha", 1f, 0f).apply {
+                                duration = 2000 // 3초 동안
+                                start()
+                            }
+                        }, 2000) // 2초 동안 대기
+                    }
+                 })
             }
         })
     }
